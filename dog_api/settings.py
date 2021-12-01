@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'dog',
     'django_filters',
+    'rest_captcha',
 ]
 
 MIDDLEWARE = [
@@ -136,4 +137,12 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'dog.pagination.HeaderLimitOffsetPagination',
     'PAGE_SIZE': 100,
+}
+
+CACHES={
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'rest-captcha',
+        'MAX_ENTRIES': 10000,
+    }
 }
