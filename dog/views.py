@@ -1,5 +1,10 @@
 import django_filters
 from rest_framework import viewsets
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from django.conf import settings
+
 from .models import Dog, Breed
 from .serializers import DogSerializer, BreedSerializer
 
@@ -27,3 +32,10 @@ class BreedViewSet(viewsets.ModelViewSet):
     queryset = Breed.objects.all()
     serializer_class = BreedSerializer
     filterset_class = BorrowedFilterSet
+
+
+class GoogleLogin(SocialLoginView):
+    authentication_classes = []
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = "http://localhost:3000"
+    client_class = OAuth2Client
