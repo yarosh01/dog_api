@@ -1,5 +1,4 @@
 import django_filters
-from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Dog, Breed
 from .serializers import DogSerializer, BreedSerializer
