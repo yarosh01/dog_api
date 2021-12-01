@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
