@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'graphene_django'
 ]
 
 MIDDLEWARE = [
@@ -186,3 +187,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+GRAPHENE = {
+    "SCHEMA": "dog.schema.schema"
+}

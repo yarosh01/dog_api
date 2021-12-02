@@ -14,7 +14,6 @@ class BreedSerializer(serializers.ModelSerializer):
         model = Breed
         fields = '__all__'
 
-
     def save(self, *args, **kwargs):
         if self.instance.photo:
             self.instance.photo.delete()
