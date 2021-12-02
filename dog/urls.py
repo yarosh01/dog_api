@@ -12,7 +12,7 @@ router.register('breeds', BreedViewSet, basename='breeds')
 
 urlpatterns = [
     path('captcha/', include('rest_captcha.urls')),
-    path('photo/', DogPhotoUpload.as_view(), name='upload_photo')
+    path('photo/', DogPhotoUpload.as_view(), name='upload_photo'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += router.urls

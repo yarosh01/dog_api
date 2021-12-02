@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_captcha.serializers import RestCaptchaSerializer
 
 from .models import Dog, Breed
 
@@ -7,7 +6,7 @@ from .models import Dog, Breed
 class DogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dog
-        fields = '__all__'
+        fields = ["name", "age", "breed", "gender", "color", "favoritefood", "favoritetoy"]
 
 
 class BreedSerializer(serializers.ModelSerializer):
