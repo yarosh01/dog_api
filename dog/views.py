@@ -5,12 +5,9 @@ from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.parsers import MultiPartParser, FormParser
 
 from .models import Dog, Breed
-from .serializers import DogSerializer, BreedSerializer, DogPhotoSerializer
+from .serializers import DogSerializer, BreedSerializer
 
 
 class BorrowedFilterSet(django_filters.FilterSet):
@@ -61,14 +58,3 @@ def google_token(request):
         return RefreshNuxtAuth.as_view()(request)
     return GoogleLogin.as_view()(request)
 
-
-class DogPhotoUpload(APIView):
-    parser_classes = [MultiPartParser, FormParser]
-    permission_classes = ()
-
-    def post(self, request):
-        serializer = DogPhotoSerializer(data=request.data, instance=request.user)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

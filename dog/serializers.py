@@ -6,7 +6,7 @@ from .models import Dog, Breed
 class DogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dog
-        fields = ["name", "age", "breed", "gender", "color", "favoritefood", "favoritetoy"]
+        fields = '__all__'
 
 
 class BreedSerializer(serializers.ModelSerializer):
@@ -14,11 +14,6 @@ class BreedSerializer(serializers.ModelSerializer):
         model = Breed
         fields = '__all__'
 
-
-class DogPhotoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Dog
-        fields = ["photo"]
 
     def save(self, *args, **kwargs):
         if self.instance.photo:
