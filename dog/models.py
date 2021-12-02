@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Breed(models.Model):
-
     class Size(models.TextChoices):
         Tiny = 'TN', _('Tiny')
         Small = 'SM', _('Small')
@@ -28,12 +27,17 @@ class Breed(models.Model):
         return self.name
 
 
+def name_file(instance, filename):
+    return '/'.join(['images', str(instance.name), filename])
+
+
 class Dog(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
     gender = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to=name_file, blank=True, null=True)
     favoritefood = models.CharField(max_length=100)
     favoritetoy = models.CharField(max_length=100)
 
